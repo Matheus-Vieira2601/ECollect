@@ -4,12 +4,13 @@ import Carregamento from './telas/TelaCarregamento';
 import Login from './telas/TelaLogin';
 import Cadastro from './telas/TelaCadastro';
 import Home from './telas/TelaPrincipal';
+import Denuncia from './telas/TelaDenuncia';
 
 export default function App() {  
   return (
     <View style={styles.container}>
       <View style={styles.background}>
-        <Home />
+        <Denuncia />
       </View>
       <StatusBar style="auto" />
     </View>
