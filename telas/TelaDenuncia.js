@@ -56,18 +56,6 @@ export default function TelaLogin() {
                     <Text style={styles.buttonText}>Câmera</Text>
                 </TouchableOpacity>
 
-                {cameraOpen && (
-                    <RNCamera
-                        style={styles.camera}
-                        type={RNCamera.Constants.Type.back}
-                        captureAudio={false}
-                    >
-                        {/* Botão para fechar a câmera */}
-                        <TouchableOpacity onPress={handleCloseCamera} style={styles.closeCameraButton}>
-                            <Text style={styles.closeCameraButtonText}>Fechar Câmera</Text>
-                        </TouchableOpacity>
-                    </RNCamera>
-                )}
 
                 <TouchableOpacity style={styles.button}>
                     <Image source={local} style={styles.buttonImage}/>
@@ -92,7 +80,19 @@ export default function TelaLogin() {
             </TouchableOpacity>
 
             <Modal animationType='fade' transparent={true} visible={modalSairVisible}>
-                {/* ... (o resto do seu modal) */}
+                <View style={styles.modalSairBackground}>
+                    <View style={styles.modalSairContainer}>
+                        <Text style={styles.modalSairText}>Deseja realemte sair?</Text>
+                        <View style={styles.modalSairButtonsContainer}>
+                            <TouchableOpacity style={styles.modalSairSairButton}>
+                                <Text style={styles.modalSairButtonText}>Sair</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.modalSairCancelarButton} onPress={handleCancelar}>
+                                <Text style={styles.modalSairButtonText}>Cancelar</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
             </Modal>
         </View>
     );
