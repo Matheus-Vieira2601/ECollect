@@ -13,6 +13,7 @@ import descricao from '../assets/descricao.png';
 export default function TelaLogin() {
     const [modalSairVisible, setModalSairVisible] = useState(false);
     const [cameraOpen, setCameraOpen] = useState(false);
+    const [modalGravidadeVisible, setModalGravidadeVisible] = useState(false);
 
     const handleVoltarPress = () => {
         setModalSairVisible(true);
@@ -33,6 +34,14 @@ export default function TelaLogin() {
 
     const handleCloseCamera = () => {
         setCameraOpen(false);
+    }
+
+    const handleGravidadePress = () => {
+        setModalGravidadeVisible(true);
+    }
+
+    const handleSelecionaGravidade = () => {
+        setModalGravidadeVisible(false);
     }
 
     return (
@@ -64,7 +73,7 @@ export default function TelaLogin() {
             </View>
 
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleGravidadePress}>
                     <Image source={gravidade} style={styles.buttonImage}/>
                     <Text style={styles.buttonText}>Gravidade</Text>
                 </TouchableOpacity>
@@ -80,17 +89,44 @@ export default function TelaLogin() {
             </TouchableOpacity>
 
             <Modal animationType='fade' transparent={true} visible={modalSairVisible}>
-                <View style={styles.modalSairBackground}>
-                    <View style={styles.modalSairContainer}>
-                        <Text style={styles.modalSairText}>Deseja realemte sair?</Text>
+                <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+
+                        <Text style={styles.modalTituloText}>Deseja realemte sair?</Text>
+
                         <View style={styles.modalSairButtonsContainer}>
                             <TouchableOpacity style={styles.modalSairSairButton}>
-                                <Text style={styles.modalSairButtonText}>Sair</Text>
+                                <Text style={styles.modalButtonText}>Sair</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.modalSairCancelarButton} onPress={handleCancelar}>
-                                <Text style={styles.modalSairButtonText}>Cancelar</Text>
+                                <Text style={styles.modalButtonText}>Cancelar</Text>
                             </TouchableOpacity>
                         </View>
+
+                    </View>
+                </View>
+            </Modal>
+
+            <Modal animationType='fade' transparent={true} visible={modalGravidadeVisible}>
+                <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+
+                        <Text style={styles.modalTituloText}>Qual a gravidade da situação?</Text>
+
+                        <View>
+                            <TouchableOpacity onPress={handleSelecionaGravidade} style={styles.modalButtonGravidadeLeve}>
+                                <Text style={styles.modalButtonText}>Baixa</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={handleSelecionaGravidade} style={styles.modalButtonGravidadeModerada}>
+                                <Text style={styles.modalButtonText}>Moderada</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={handleSelecionaGravidade} style={styles.modalButtonGravidadeAlta}>
+                                <Text style={styles.modalButtonText}>Alta</Text>
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
                 </View>
             </Modal>
@@ -172,13 +208,13 @@ const styles = StyleSheet.create({
         color: '#093A2B',
         fontWeight: 'bold',
     },
-    modalSairBackground: {
+    modalBackground: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
     },
-    modalSairContainer: {
+    modalContainer: {
         width: 300,
         backgroundColor: '#ffffff',
         borderRadius: 15,
@@ -186,11 +222,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
     },
-    modalSairText: {
+    modalTituloText: {
         fontSize: 18,
         marginBottom: 10,
         alignItems: 'center',
         justifyContent: 'center',
+        fontWeight: 'bold',
+        color: '#0C503C'
     },
     modalSairButtonsContainer: {
         flexDirection: 'row',
@@ -207,7 +245,7 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
     },
-    modalSairButtonText: {
+    modalButtonText: {
         color: '#ffffff',
         fontWeight: 'bold',
     },
@@ -219,6 +257,30 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 40,
         borderRadius: 20,
+    },
+    modalButtonGravidadeLeve: {
+        backgroundColor: '#7EB902',
+        alignItems: 'center',
+        justifyContent:'center',
+        borderRadius: 20,
+        width: 150,
+        marginVertical: 10,
+    },
+    modalButtonGravidadeModerada: {
+        backgroundColor: '#B9BC1B',
+        alignItems: 'center',
+        justifyContent:'center',
+        borderRadius: 20,
+        width: 150,
+        marginVertical: 10,
+    },
+    modalButtonGravidadeAlta: {
+        backgroundColor: '#FF2E00',
+        alignItems: 'center',
+        justifyContent:'center',
+        borderRadius: 20,
+        width: 150,
+        marginVertical: 10,
     },
     camera: {
         flex: 1,
