@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RNCamera } from 'react-native-camera';
-import { View, Image, StyleSheet, Text, TouchableOpacity, Modal, Button } from 'react-native';
+import { View, Image, StyleSheet, Text, TouchableOpacity, Modal, Button, TextInput } from 'react-native';
 import logo from '../assets/LogoEcollect.png';
 import voltar from '../assets/voltar.png';
 import opcoes from '../assets/opcoes2.png';
@@ -14,6 +14,8 @@ export default function TelaLogin() {
     const [modalSairVisible, setModalSairVisible] = useState(false);
     const [cameraOpen, setCameraOpen] = useState(false);
     const [modalGravidadeVisible, setModalGravidadeVisible] = useState(false);
+    const [modalLocalVisible, setModalLocalVisible] = useState(false);
+    const [modalDescricaoVisible, setModalDescricaoVisible] = useState(false);
 
     const handleVoltarPress = () => {
         setModalSairVisible(true);
@@ -24,8 +26,7 @@ export default function TelaLogin() {
     }
 
     const handleConfirmarSair = () => {
-        // Coloque aqui a lógica para sair do aplicativo
-        // Por exemplo, navegar para a tela de login ou encerrar o aplicativo
+        //lógica para sair da tela de denuncia
     }
 
     const handleOpenCamera = () => {
@@ -42,6 +43,22 @@ export default function TelaLogin() {
 
     const handleSelecionaGravidade = () => {
         setModalGravidadeVisible(false);
+    }
+
+    const handleLocalPress = () => {
+        setModalLocalVisible(true);
+    }
+
+    const handleSelecionaLocal = () => {
+        setModalLocalVisible(false);
+    }
+
+    const handleDescricaoPress = () => {
+        setModalDescricaoVisible(true);
+    }
+
+    const handleSelecionaDescricao = () => {
+        setModalDescricaoVisible(false);
     }
 
     return (
@@ -66,7 +83,7 @@ export default function TelaLogin() {
                 </TouchableOpacity>
 
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleLocalPress}>
                     <Image source={local} style={styles.buttonImage}/>
                     <Text style={styles.buttonText}>Local</Text>
                 </TouchableOpacity>
@@ -78,7 +95,7 @@ export default function TelaLogin() {
                     <Text style={styles.buttonText}>Gravidade</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleDescricaoPress}>
                     <Image source={descricao} style={styles.buttonImage}/>
                     <Text style={styles.buttonText}>Descrição</Text>
                 </TouchableOpacity>
@@ -127,6 +144,37 @@ export default function TelaLogin() {
                             </TouchableOpacity>
                         </View>
 
+                    </View>
+                </View>
+            </Modal>
+
+            <Modal animationType='fade' transparent={true} visible={modalLocalVisible}>  
+                <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+                        <Text style={styles.modalTextLocal}>Bairro do entulho:</Text>
+                        <TextInput style={styles.inputLocal}/>
+                        <Text style={styles.modalTextLocal}>Rua do entulho:</Text>
+                        <TextInput style={styles.inputLocal}/>
+                        <TouchableOpacity onPress={handleSelecionaLocal}>
+                            <Text style={styles.modalButtonFinalizar}>Finalizar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+
+            <Modal animationType='fade' transparent={true} visible={modalDescricaoVisible}>
+                <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+                        <Text style={styles.modalTituloText}>Dê detalhes sobre os itens e espaços do entulho:</Text>
+                        <TextInput
+                            style={styles.modalTextDescricao}
+                            multiline={true}
+                            numberOfLines={6}
+                            maxLength={300}
+                        />
+                        <TouchableOpacity onPress={handleSelecionaDescricao}>
+                            <Text style={styles.modalButtonFinalizar}>Finalizar</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -228,7 +276,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         fontWeight: 'bold',
-        color: '#0C503C'
+        color: '#0C503C',
     },
     modalSairButtonsContainer: {
         flexDirection: 'row',
@@ -286,5 +334,39 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
+    },
+    inputLocal: {
+        backgroundColor: "white",
+        borderBottomColor: "black",
+        borderBottomWidth: 2,
+        width: "98%",
+        marginVertical: 10,
+    },
+    modalTextLocal: {
+        fontSize: 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontWeight: 'bold',
+        color: '#0C503C',
+    },
+    modalButtonFinalizar: {
+        alignItems: "flex-end",
+        marginTop: 10,
+        fontWeight: "bold",
+        textDecorationLine: "underline"
+    },
+    modalTextDescricao: {
+        width: '100%',
+        height: 180,
+        borderLeftColor: 'black',
+        borderLeftWidth: 2,
+        borderRightColor: 'black',
+        borderRightWidth: 2,
+        borderBottomColor: 'black',
+        borderBottomWidth: 2,
+        borderTopColor: 'black',
+        borderTopWidth: 1,
+        textAlignVertical: 'top',
+        padding: 10,
     },
 });
