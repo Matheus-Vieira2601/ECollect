@@ -14,6 +14,16 @@ export default function TelaConta() {
         navigation.navigate('TelaLogin');
     };
 
+    const [modalSairVisible, setModalSairVisible] = useState(false);
+
+    const handleSairPress = () => {
+        setModalSairVisible(true);
+    }
+
+    const handleCancelar = () => {
+        setModalSairVisible(false);
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.navContainer}>
@@ -32,8 +42,42 @@ export default function TelaConta() {
                         <Text>Nome</Text>
                         <TextInput style={styles.campos}/>
                     </View>
+                    <View style={styles.formCampos}>
+                        <Text>Email</Text>
+                        <TextInput style={styles.campos}/>
+                    </View>
+                    <View style={styles.formCampos}>
+                        <Text>Telefone</Text>
+                        <TextInput style={styles.campos}/>
+                    </View>
+                </View>
+                <View style={styles.botoesContainer}>
+                    <TouchableOpacity style={styles.botaoSalvar} onPress={() => { handleNavegarHome(); }}>
+                        <Text style={styles.textBotaoSalvar}>Salvar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleSairPress}>
+                        <Text style={styles.textBotaoSair}>Sair da conta</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
+
+            <Modal animationType='fade' transparent={true} visible={modalSairVisible}>
+                <View style={styles.modalBackground}>
+                    <View style={styles.modalContainer}>
+                    <Text style={styles.modalTituloText}>Deseja realemte sair?</Text>
+
+                        <View style={styles.modalSairButtonsContainer}>
+                            <TouchableOpacity style={styles.modalSairSairButton} onPress={() => { handleNavegarLogin(); }}>
+                                <Text style={styles.modalButtonText}>Sair</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.modalSairCancelarButton}>
+                                <Text style={styles.modalButtonText}>Cancelar</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
+                </View>
+            </Modal>
         </View>
     )
 }
@@ -74,6 +118,8 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         elevation: 15,
         alignItems: 'center',
+        marginTop: 90,
+        marginBottom: 40,
     },
     formImage: {
         height: 140,
@@ -85,13 +131,50 @@ const styles = StyleSheet.create({
     formCampos: {
         alignItems: 'flex-start',
         width: '85%',
+        marginVertical: 25,
     },
-    
     campos: {
         borderBottomColor: 'black',
         width: '100%',
         borderBottomWidth: 1,
         height: 39,
         zIndex: 2,
+    },
+    botoesContainer: {
+        alignItems: 'center',
+        height: 100,
+    },
+    botaoSalvar: {
+        backgroundColor: '#0C503C',
+        width: 280,
+        height: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 20,
+        marginBottom: 20,
+    },
+    textBotaoSalvar: {
+        color: '#CFEB0D',
+        fontWeight: 'bold',
+        fontSize: 17,
+    },
+    textBotaoSair: {
+        color: '#FF2E00',
+        fontWeight: 'bold',
+        fontSize: 17,
+    },
+    modalBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    },
+    modalContainer: {
+        width: 300,
+        backgroundColor: '#ffffff',
+        borderRadius: 15,
+        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'space-around',
     },
 })
