@@ -1,10 +1,21 @@
 import React from 'react';
 import { View, Image, TextInput, StyleSheet, TouchableHighlight, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import logo from '../assets/LogoEcollect.png';
 import slogan from '../assets/SloganEcollect.png';
 import Login from '../telas/TelaLogin';
 
 export default function TelaLogin() {
+
+    const navigation = useNavigation();
+
+    const handleNavegarLogin = () => {
+        navigation.navigate('TelaLogin');
+    };
+
+    const handleNavegarHome = () => {
+        navigation.navigate('TelaHome');
+    };
 
     return (
         <View style={styles.container}>
@@ -35,7 +46,7 @@ export default function TelaLogin() {
                 />
                 <TouchableHighlight
                     style={styles.botao}
-                    onPress={() => { }}
+                    onPress={() => { handleNavegarHome(); }}
                     underlayColor="#CFEB0D"
                 >
                     <Text style={styles.botaoTexto}>Entrar</Text>
@@ -43,7 +54,7 @@ export default function TelaLogin() {
 
                 <Text style={styles.cadastroTexto}>
                     Já possui uma conta? clique {' '}
-                    <TouchableHighlight onPress={() => { Login }}>
+                    <TouchableHighlight onPress={() => { handleNavegarLogin(); }}>
                         <Text style={styles.linkCadastro}>aqui</Text>
                     </TouchableHighlight>
                 </Text>

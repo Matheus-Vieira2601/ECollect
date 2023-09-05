@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RNCamera } from 'react-native-camera';
 import { View, Image, StyleSheet, Text, TouchableOpacity, Modal, Button, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import logo from '../assets/LogoEcollect.png';
 import voltar from '../assets/voltar.png';
 import opcoes from '../assets/opcoes2.png';
@@ -16,6 +17,12 @@ export default function TelaLogin() {
     const [modalGravidadeVisible, setModalGravidadeVisible] = useState(false);
     const [modalLocalVisible, setModalLocalVisible] = useState(false);
     const [modalDescricaoVisible, setModalDescricaoVisible] = useState(false);
+
+    const navigation = useNavigation();
+
+    const handleNavegarHome = () => {
+        navigation.navigate('TelaHome');
+    };
 
     const handleVoltarPress = () => {
         setModalSairVisible(true);
@@ -101,7 +108,7 @@ export default function TelaLogin() {
                 </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.buttonSubmit}>
+            <TouchableOpacity style={styles.buttonSubmit} onPress={() => { handleNavegarHome(); }}>
                 <Text style={styles.buttonSubmitText}>Enviar sua denúncia!</Text>
             </TouchableOpacity>
 
@@ -112,7 +119,7 @@ export default function TelaLogin() {
                         <Text style={styles.modalTituloText}>Deseja realemte sair?</Text>
 
                         <View style={styles.modalSairButtonsContainer}>
-                            <TouchableOpacity style={styles.modalSairSairButton}>
+                            <TouchableOpacity style={styles.modalSairSairButton} onPress={() => { handleNavegarHome(); }}>
                                 <Text style={styles.modalButtonText}>Sair</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.modalSairCancelarButton} onPress={handleCancelar}>

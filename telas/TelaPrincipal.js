@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Image, TextInput, StyleSheet, TouchableHighlight, Text, SafeAreaView, TouchableOpacity, Modal } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import mapa from '../assets/Mapa.png';
 import home from '../assets/homeVerdeClaro.png';
 import conta from '../assets/pessoa.png';
@@ -13,6 +14,12 @@ import ajuda from '../assets/ajuda.png'
 
 export default function TelaPrincipal() {
     const [modalVisible, setModalVisible] = useState(false);
+
+    const navigation = useNavigation();
+
+    const handleNavegarDenuncia = () => {
+        navigation.navigate('TelaDenuncia');
+    };
 
     return (
         <View style={styles.container}>
@@ -42,10 +49,10 @@ export default function TelaPrincipal() {
                     <Text style={styles.iconText}>Ponto de Coleta</Text>
                 </View>
 
-                <View style={styles.iconContainer}>
+                <TouchableOpacity style={styles.iconContainer} onPress={() => { handleNavegarDenuncia(); }}>
                     <Image source={denuncia} style={styles.icon}/>
                     <Text style={styles.iconText}>Denuncia</Text>
-                </View>
+                </TouchableOpacity>
                 
             </SafeAreaView>
 
