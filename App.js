@@ -7,18 +7,20 @@ import Login from './telas/TelaLogin';
 import Cadastro from './telas/TelaCadastro';
 import Home from './telas/TelaPrincipal';
 import Denuncia from './telas/TelaDenuncia';
+import Conta from './telas/TelaConta';
 
 const Stack = createStackNavigator();
 
 export default function App() {  
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='TelaLogin'>
+      <Stack.Navigator initialRouteName='TelaCarregamento'>
         <Stack.Screen name='TelaLogin' component={Login} options={{ headerShown: false }}/>
         <Stack.Screen name='TelaCadastro' component={Cadastro} options={{ headerShown: false }}/>
         <Stack.Screen name='TelaCarregamento' component={Carregamento} options={{ headerShown: false }}/>
         <Stack.Screen name='TelaDenuncia' component={Denuncia} options={{ headerShown: false }}/>
         <Stack.Screen name='TelaHome' component={Home} options={{ headerShown: false }}/>
+        <Stack.Screen name='TelaConta' component={Conta} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

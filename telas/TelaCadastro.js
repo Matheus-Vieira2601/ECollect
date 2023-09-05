@@ -3,7 +3,6 @@ import { View, Image, TextInput, StyleSheet, TouchableHighlight, Text } from 're
 import { useNavigation } from '@react-navigation/native';
 import logo from '../assets/LogoEcollect.png';
 import slogan from '../assets/SloganEcollect.png';
-import Login from '../telas/TelaLogin';
 
 export default function TelaLogin() {
 

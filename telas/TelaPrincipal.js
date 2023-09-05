@@ -21,6 +21,10 @@ export default function TelaPrincipal() {
         navigation.navigate('TelaDenuncia');
     };
 
+    const handleNavegarConta = () => {
+        navigation.navigate('TelaConta');
+    };
+
     return (
         <View style={styles.container}>
 
@@ -39,10 +43,10 @@ export default function TelaPrincipal() {
                     <Text style={styles.iconText}>Home</Text>
                 </View>
 
-                <View style={styles.iconContainer}>
+                <TouchableOpacity style={styles.iconContainer} onPress={() => { handleNavegarConta(); }}>
                     <Image source={conta} style={styles.icon}/> 
                     <Text style={styles.iconText}>Conta</Text>
-                </View>
+                </TouchableOpacity>
 
                 <View style={styles.iconContainer}>
                     <Image source={pontoColeta} style={styles.icon}/>
