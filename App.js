@@ -8,6 +8,7 @@ import Cadastro from './telas/TelaCadastro';
 import Home from './telas/TelaPrincipal';
 import Denuncia from './telas/TelaDenuncia';
 import Conta from './telas/TelaConta';
+import Camera from './telas/camera';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Screen name='TelaDenuncia' component={Denuncia} options={{ headerShown: false }}/>
         <Stack.Screen name='TelaHome' component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name='TelaConta' component={Conta} options={{ headerShown: false }}/>
+        <Stack.Screen name='TelaCamera' component={Camera} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

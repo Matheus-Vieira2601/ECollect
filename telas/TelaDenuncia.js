@@ -37,7 +37,7 @@ export default function TelaLogin() {
     }
 
     const handleOpenCamera = () => {
-        setCameraOpen(true);
+        navigation.navigate('TelaCamera')
     }
 
     const handleCloseCamera = () => {
