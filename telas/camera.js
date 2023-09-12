@@ -18,6 +18,10 @@ const MyCamera = ({ navigation }) => {
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [open, setOpen] = useState(false);
 
+  const handleNavegarDenuncia = () => {
+    navigation.navigate('TelaDenuncia');
+  };
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -62,29 +66,26 @@ const MyCamera = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </Camera>
+
+
       {capturedPhoto && (
-        <Modal animationType="slide" transparent={false} visible={open}>
+        <Modal animationType="slide" transparent={false} visible={open} style={styles.modal}>
+          
           <View style={styles.contentModal}>
-            <Text style={styles.modalText}>Essa sera a foto do seu perfil!</Text>
-            <TouchableOpacity
-              style={styles.cancelButton}
-              onPress={() => {
-                setOpen(false)
-                
-              }}
-            >
-              <Text style={styles.textButton}>Cancelar</Text>
-              
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.sendButton}
-              onPress={() => {navigation.navigate('Products'), setOpen(false)}}
-            
-            >
-              <Text style={styles.textButton}>Enviar</Text>
-              
-            </TouchableOpacity>
+
+            <View style={styles.containerText}>
+              <Text style={styles.modalText}>Deseja utilizar essa foto?</Text>
+            </View>
+
             <Image style={styles.imgPhoto} source={{ uri: capturedPhoto }} />
+            
+            <TouchableOpacity style={styles.cancelButton} onPress={() => {setOpen(false)}}>
+              <Text style={styles.textCancelButton}>Cancelar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.sendButton} onPress={() => { handleNavegarDenuncia(); }}>
+              <Text style={styles.textSendButton}>Enviar</Text>
+            </TouchableOpacity>
             
           </View>
         </Modal>
@@ -130,17 +131,30 @@ const styles = StyleSheet.create({
     width: 50,
     borderRadius: 50,
   },
+  modal: {
+    alignItems: "center",
+  },
   contentModal: {
-    flex: 1,
     justifyContent: "center",
-    alignItems: "flex-end",
-    margin: 20,
+    alignItems: "center",
+    marginBottom: 100,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#0C503C",
+  },
+  containerText: {
+    marginBottom: 50,
+    marginRight: 97,
+    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalText: {
     fontSize:20,
-    position: "absolute",
     top: 50,
     left: 50,
+    fontWeight: "bold",
+    color: "#CFEB0D",
   },
   cancelButton: {
     width:"40%",
@@ -149,10 +163,11 @@ const styles = StyleSheet.create({
     bottom: 10,
     left: 2,
     margin: 10,
-    backgroundColor:"#508D4F",
+    backgroundColor:"#FF2E00",
     justifyContent:"center",
     alignItems:"center",
-    borderRadius:50
+    borderRadius:50,
+    marginBottom: 40
   },
   sendButton:{
     width:"40%",
@@ -161,20 +176,29 @@ const styles = StyleSheet.create({
     bottom: 10,
     right: 2,
     margin: 10,
-    backgroundColor:"#508D4F",
+    backgroundColor:"#CFEB0D",
     justifyContent:"center",
     alignItems:"center",
-    borderRadius:50
+    borderRadius:50,
+    marginBottom: 40
   },
-  textButton:{
-    color: '#FFFFFF',
+  textSendButton:{
+    color: '#0C503C',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  textCancelButton:{
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   imgPhoto: {
-    width: "100%",
+    width: "90%",
     height: 400,
+    marginTop: 85,
+    marginBottom: 150,
   },
 });
 
